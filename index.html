@@ -1,0 +1,182 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Work Day Scheduler</title>
+  </head>
+
+<body>
+    
+<h1 id="header"class="header">This is the Date,Year, Day</h1>
+
+<div class="container">
+    <div class="row">
+        <p class="lead">09:00 am</p>
+        <textarea name="9am" id="9am" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="9am">Save</button>
+    </div>
+
+    <div class="row">
+        <p class="lead">10:00 am</p>
+        <textarea name="10am" id="10am" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="10am">Save</button>
+    </div>
+
+    <div class="row">
+        <p class="lead">11:00 am</p>
+        <textarea name="11am" id="11am" cols="120" rows="3" class ="textarea"></textarea>
+        <button  data-time="11am">Save</button>
+    </div>
+
+    <div class="row">
+        <p class="lead">12:00 pm</p>
+        <textarea name="12pm" id="12pm" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="12pm">Save</button>
+    </div>
+
+    <div class="row">
+        <p class="lead">01:00 pm</p>
+        <textarea name="1pm" id="1pm" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="1pm">Save</button>
+    </div>
+    
+    <div class="row">
+        <p class="lead">02:00 pm</p>
+        <textarea name="2pm" id="2pm" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="2pm">Save</button>
+    </div>
+
+    <div class="row">
+        <p class="lead">03:00 pm</p>
+        <textarea name="3pm" id="3pm" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="3pm">Save</button>
+    </div>
+    
+    <div class="row">
+        <p class="lead">04:00 pm</p>
+        <textarea name="4pm" id="4pm" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="4pm">Save</button>
+    </div>
+
+    <div class="row" name="fivepmList">
+        <p class="lead">05:00 pm</p>
+        <textarea name="5pm" id="5pm" cols="120" rows="3"class ="textarea"></textarea>
+        <button  data-time="5pm" onclick="">Save</button>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="lib/moment/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+var headerEl = document.querySelector("#header")
+var mtop = moment();
+var now = new Date().getHours();
+
+
+headerEl.textContent = mtop.format("[The day is ]" + "dddd MMM Do YYYY")
+
+function colors() {
+  if (now > 9) {
+    $("#9am").addClass("past");
+  } else if (now >= 9 && now < 10) {
+    $("#9am").addClass("present");
+  } else if (now < 9) {
+    $("#9am").addClass("future");
+  }
+  if (now > 10) {
+    $("#10am").addClass("past");
+  } else if (now >= 10 && now < 11) {
+    $("#10am").addClass("present");
+  } else if (now < 10) {
+    $("#10am").addClass("future");
+  }
+  if (now > 11) {
+    $("#11am").addClass("past");
+  } else if (now >= 11 && now < 12) {
+    $("#11am").addClass("present");
+  } else if (now < 11) {
+    $("#11am").addClass("future");
+  }
+  if (now > 12) {
+    $("#12pm").addClass("past");
+  } else if (now >= 12 && now < 13) {
+    $("#12pm").addClass("present");
+  } else if (now < 12) {
+    $("#12pm").addClass("future");
+  }
+  if (now > 13) {
+    $("#1pm").addClass("past");
+  } else if (now >= 13 && now < 14) {
+    $("#1pm").addClass("present");
+  } else if (now < 13) {
+    $("#1pm").addClass("future");
+  }
+  if (now > 14) {
+    $("#2pm").addClass("past");
+  } else if (now >= 14 && now < 15) {
+    $("#2pm").addClass("present");
+  } else if (now < 14) {
+    $("#2pm").addClass("future");
+  }
+  if (now > 15) {
+    $("#3pm").addClass("past");
+  } else if (now >= 15 && now < 16) {
+    $("#3pm").addClass("present");
+  } else if (now < 15) {
+    $("#3pm").addClass("future");
+  }
+  if (now > 16) {
+    $("#4pm").addClass("past");
+  } else if (now >= 16 && now < 17) {
+    $("#4pm").addClass("present");
+  } else if (now < 16) {
+    $("#4pm").addClass("future");
+  }
+  if (now > 17) {
+    $("#5pm").addClass("past");
+  } else if (now >= 17 && now < 18) {
+    $("#5pm").addClass("present");
+  } else if (now < 17) {
+    $("#5pm").addClass("future");
+  }
+}
+colors();
+
+$("button").on("click", function(){
+  var savebtn = $(this).attr("data-time")
+  var nineam = $("#9am").val()
+  var tenam = $("#10am").val()
+  var elevenam = $("#11am").val()
+  var twelvepm = $("#12pm").val()
+  var onepm = $("#1pm").val()
+  var twopm = $("#2pm").val()
+  var threepm = $("#3pm").val()
+  var fourpm = $("#4pm").val()
+  var fivepm = $("#5pm").val()
+  var storage = localStorage.setItem("key",fivepm||fourpm||threepm||twopm||onepm||twelvepm||elevenam||tenam||nineam)
+  var getgot = localStorage.getItem("key")
+  $(this).parent().append(getgot)
+  })
+
+
+</script>
+</html>
